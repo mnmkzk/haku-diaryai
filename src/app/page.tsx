@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mic, Settings, Calendar, Heart, MessageCircle } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
-import { format } from 'date-fns';
-import { ja } from 'date-fns/locale';
+import { formatDate } from '@/utils/date';
+import { getEmotionEmoji } from '@/utils/emotions';
 
 export default function HomePage() {
   const [entries, setEntries] = useState<any[]>([]);
@@ -27,12 +27,6 @@ export default function HomePage() {
     fetchEntries();
   }, []);
 
-  const getEmotionEmoji = (type: string) => {
-    const emojis: Record<string, string> = {
-      joy: '😊', calm: '😌', sad: '😢', anger: '😤', anxiety: '😰', gratitude: '🙏'
-    };
-    return emojis[type] || '🤔';
-  };
 
   return (
     <div className="min-h-screen bg-[#111111] text-foreground flex flex-col font-sans selection:bg-primary/30 pb-24">
@@ -86,7 +80,7 @@ export default function HomePage() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2 text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
                     <Calendar className="w-3 h-3" />
-                    {format(new Date(entry.created_at), 'yyyy.MM.dd (eee)', { locale: ja })}
+                    {formatDate(entry.created_at)}
                   </div>
                   <div className="text-xl">
                     {getEmotionEmoji(entry.emotion_primary)}

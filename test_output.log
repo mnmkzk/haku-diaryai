@@ -1,0 +1,87 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mC:/Users/mnmkz/OneDrive/副業/Haku/haku-app[39m
+
+ [31m×[39m src/test/integration/record.integration.spec.tsx[2m > [22mRecordPage Integration[2m > [22m完成した投稿フロー: 録音の開始、停止、解析結果の表示[33m 5015[2mms[22m[39m
+[31m   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".[39m
+ [31m×[39m src/test/integration/record.integration.spec.tsx[2m > [22mRecordPage Integration[2m > [22mAPIエラー時の挙動: エラーメッセージの表示[33m 5017[2mms[22m[39m
+[31m   → Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 2 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m src/test/integration/record.integration.spec.tsx[2m > [22mRecordPage Integration[2m > [22m完成した投稿フロー: 録音の開始、停止、解析結果の表示
+[31m[1mError[22m: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".[39m
+[36m [2m❯[22m src/test/integration/record.integration.spec.tsx:[2m85:5[22m[39m
+    [90m 83| [39m    })
+    [90m 84| [39m
+    [90m 85| [39m    [34mit[39m([32m'完成した投稿フロー: 録音の開始、停止、解析結果の表示'[39m[33m,[39m [35masync[39m () [33m=>[39m {
+    [90m   | [39m    [31m^[39m
+    [90m 86| [39m        [34mrender[39m([33m<[39m[33mRecordPage[39m [33m/[39m[33m>[39m)
+    [90m 87| [39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/test/integration/record.integration.spec.tsx[2m > [22mRecordPage Integration[2m > [22mAPIエラー時の挙動: エラーメッセージの表示
+[31m[1mError[22m: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".[39m
+[36m [2m❯[22m src/test/integration/record.integration.spec.tsx:[2m121:5[22m[39m
+    [90m119| [39m    })
+    [90m120| [39m
+    [90m121| [39m    [34mit[39m([32m'APIエラー時の挙動: エラーメッセージの表示'[39m[33m,[39m [35masync[39m () [33m=>[39m {
+    [90m   | [39m    [31m^[39m
+    [90m122| [39m        [35mconst[39m { server } [33m=[39m [35mawait[39m [35mimport[39m([32m'@/test/mocks/server'[39m)
+    [90m123| [39m        [35mconst[39m { http[33m,[39m [33mHttpResponse[39m } [33m=[39m [35mawait[39m [35mimport[39m([32m'msw'[39m)
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Unhandled Errors [49m[22m[31m⎯⎯⎯⎯⎯⎯[39m
+[31m[1m
+Vitest caught 2 unhandled errors during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.[22m[39m
+
+[31m⎯⎯⎯⎯⎯[39m[1m[41m Uncaught Exception [49m[22m[31m⎯⎯⎯⎯⎯[39m
+[31m[1mTypeError[22m: Cannot read properties of undefined (reading 'getTracks')[39m
+[36m [2m❯[22m MockMediaRecorder.mediaRecorderRef.current.onstop src/hooks/useAudioRecorder.ts:[2m63:43[22m[39m
+    [90m 61| [39m
+    [90m 62| [39m                [90m// Stop all tracks[39m
+    [90m 63| [39m                mediaRecorderRef.current?.stream.getTracks().forEach((…
+    [90m   | [39m                                          [31m^[39m
+    [90m 64| [39m                [34mresolve[39m(audioBlob)
+    [90m 65| [39m            }
+[90m [2m❯[22m Timeout._onTimeout src/test/integration/record.integration.spec.tsx:[2m52:43[22m[39m
+[90m [2m❯[22m listOnTimeout node:internal/timers:[2m605:17[22m[39m
+[90m [2m❯[22m processTimers node:internal/timers:[2m541:7[22m[39m
+
+[31mThis error originated in "[1msrc/test/integration/record.integration.spec.tsx[22m" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.[39m
+[31mThe latest test that might've caused the error is "[1m完成した投稿フロー: 録音の開始、停止、解析結果の表示[22m". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.[39m
+
+[31m⎯⎯⎯⎯⎯[39m[1m[41m Uncaught Exception [49m[22m[31m⎯⎯⎯⎯⎯[39m
+[31m[1mTypeError[22m: Cannot read properties of undefined (reading 'getTracks')[39m
+[36m [2m❯[22m MockMediaRecorder.mediaRecorderRef.current.onstop src/hooks/useAudioRecorder.ts:[2m63:43[22m[39m
+    [90m 61| [39m
+    [90m 62| [39m                [90m// Stop all tracks[39m
+    [90m 63| [39m                mediaRecorderRef.current?.stream.getTracks().forEach((…
+    [90m   | [39m                                          [31m^[39m
+    [90m 64| [39m                [34mresolve[39m(audioBlob)
+    [90m 65| [39m            }
+[90m [2m❯[22m Timeout._onTimeout src/test/integration/record.integration.spec.tsx:[2m52:43[22m[39m
+[90m [2m❯[22m listOnTimeout node:internal/timers:[2m605:17[22m[39m
+[90m [2m❯[22m processTimers node:internal/timers:[2m541:7[22m[39m
+
+[31mThis error originated in "[1msrc/test/integration/record.integration.spec.tsx[22m" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.[39m
+[31mThe latest test that might've caused the error is "[1mAPIエラー時の挙動: エラーメッセージの表示[22m". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.[39m
+[31m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m2 failed[39m[22m[90m (2)[39m
+[2m     Errors [22m [1m[31m2 errors[39m[22m
+[2m   Start at [22m 01:16:29
+[2m   Duration [22m 12.32s[2m (transform 190ms, setup 350ms, import 710ms, tests 10.04s, environment 1.01s)[22m
+

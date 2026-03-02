@@ -52,6 +52,7 @@ export function RecordButton({ status, onClick }: RecordButtonProps) {
             <motion.button
                 onClick={onClick}
                 disabled={isProcessing}
+                aria-label={isRecording ? '録音停止' : '録音開始'}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.92 }}
                 variants={heartbeatVariants}
