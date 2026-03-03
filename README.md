@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Haku - AI カウンセリング日記
 
-## Getting Started
+Haku は、ユーザーの心の声を深く受け止め、寄り添う AI カウンセリング日記アプリです。
+来談者中心療法の理論に基づいた対話体験を提供し、日々の感情の整理をサポートします。
 
-First, run the development server:
+## 🛠 技術スタック
+
+- **Frontend**: Next.js 14 (App Router)
+- **Styling**: Tailwind CSS, Framer Motion (Animations)
+- **Backend / Auth**: Supabase
+- **AI**: Google Gemini API (1.5 Flash)
+- **Icons**: Lucide React
+
+## 🚀 ローカル開発環境の構築
+
+### 1. リポジトリのクローンと依存関係のインストール
+
+```bash
+cd haku-app
+npm install
+```
+
+### 2. 環境変数の設定
+
+`haku-app` 直下に `.env.local` ファイルを作成し、以下の項目を設定してください。
+
+```env
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL=your_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+
+# Gemini API
+GEMINI_API_KEY=your_api_key
+```
+
+### 3. 開発サーバーの起動
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで [http://localhost:3000](http://localhost:3000) を開き、動作を確認します。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📤 Git での変更反映（プッシュ）の手順
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+変更を保存し、GitHub 等のリモートリポジトリへ反映させる一連のコマンドです。
 
-## Learn More
+```bash
+# 1. すべての変更をステージングに追加
+git add .
 
-To learn more about Next.js, take a look at the following resources:
+# 2. 変更内容を記録（コミット）
+git commit -m "ここに変更内容のメッセージを書く"
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# 3. リモートリポジトリ（GitHub等）へ送信
+git push origin main
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 🌐 デプロイ (Vercel)
 
-## Deploy on Vercel
+Vercel にデプロイする場合、管理画面の **Settings > Environment Variables** にて、上記の環境変数をすべて登録してください。登録後、Redeploy を行うことで本番環境が更新されます。
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🧪 テストの実行
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+# 全テストの実行
+npm test
+
+# カバレッジの計測
+npm run test:coverage
+```
