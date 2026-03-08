@@ -22,12 +22,16 @@ export async function analyzeJournalEntry(
     mimeType: string = "audio/webm"
 ): Promise<AIAnalysisResult> {
     if (!apiKey) {
-        throw new Error('Gemini API API key is not configured. Please set GOOGLE_GENERATIVE_AI_API_KEY in environment variables.');
+        throw new Error('Gemini API API key is not configured (GOOGLE_GENERATIVE_AI_API_KEY).');
     }
+
+    // デバッグ用: キーの形式を確認（先頭4文字と末尾4文字のみ出力）
+    const maskedKey = `${apiKey.substring(0, 4)}...${apiKey.substring(apiKey.length - 4)}`;
+    console.log(`[Gemini Auth] Using API Key: ${maskedKey}, Model: gemini-1.5-flash-latest`);
 
     try {
         const model = genAI.getGenerativeModel({
-            model: "gemini-1.5-flash",
+            model: "gemini-1.5-flash-latest",
             generationConfig: {
                 responseMimeType: "application/json",
                 responseSchema: RESPONSE_SCHEMA as any,
