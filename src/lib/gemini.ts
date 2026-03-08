@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { HAKU_SYSTEM_PROMPT, RESPONSE_SCHEMA } from './ai/prompts';
 
-const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.GEMINI_API_KEY || '';
+const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY || '';
 const genAI = new GoogleGenerativeAI(apiKey);
 
 export interface AIAnalysisResult {
@@ -22,16 +22,17 @@ export async function analyzeJournalEntry(
     mimeType: string = "audio/webm"
 ): Promise<AIAnalysisResult> {
     if (!apiKey) {
-        throw new Error('Gemini API API key is not configured (GOOGLE_GENERATIVE_AI_API_KEY).');
+        throw new Error('Gemini API API key is not configured. Please set GEMINI_API_KEY in Vercel environment variables.');
     }
 
-    // デバッグ用: キーの形式を確認（先頭4文字と末尾4文字のみ出力）
+    // デバッグ用: キーのソースと形式を確認
+    const keySource = process.env.GEMINI_API_KEY ? 'GEMINI_API_KEY' : 'GOOGLE_GENERATIVE_AI_API_KEY';
     const maskedKey = `${apiKey.substring(0, 4)}...${apiKey.substring(apiKey.length - 4)}`;
-    console.log(`[Gemini Auth] Using API Key: ${maskedKey}, Model: gemini-1.5-flash-latest`);
+    console.log(`[Gemini Auth] Source: ${keySource}, Key: ${maskedKey}, Model: gemini-1.5-flash`);
 
     try {
         const model = genAI.getGenerativeModel({
-            model: "gemini-1.5-flash-latest",
+            model: "gemini-1.5-flash",
             generationConfig: {
                 responseMimeType: "application/json",
                 responseSchema: RESPONSE_SCHEMA as any,
