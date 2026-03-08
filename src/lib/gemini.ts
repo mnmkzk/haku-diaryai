@@ -37,18 +37,27 @@ export async function analyzeJournalEntry(
             // responseSchema を使用すると SDK は内部的に v1beta を使用する。
             // 404 が続く場合はここを null にして手動パースに切り替える必要がある。
             generationConfig: {
-                responseMimeType: "application/json",
-                responseSchema: RESPONSE_SCHEMA as any,
+                temperature: 0.7,
             }
         }, { apiVersion: 'v1' });
 
         let promptContent: any[];
 
+        const jsonInstruction = `
+必ず以下のJSON形式のみを出力してください。他の説明文は一切含めないでください。
+{
+  "diary_text": "一人称の日記形式のリライト",
+  "ai_response": "200〜300文字の温かい共感的レスポンス",
+  "emotions": [
+    { "type": "joy|calm|sad|anger|anxiety|gratitude|surprise|neutral", "intensity": 0.1〜1.0 }
+  ]
+}`;
+
         if (typeof data === 'string') {
             promptContent = [
                 HAKU_SYSTEM_PROMPT,
                 data,
-                "JSON形式で出力してください。"
+                jsonInstruction
             ];
         } else {
             promptContent = [
@@ -59,7 +68,7 @@ export async function analyzeJournalEntry(
                         data: data.toString("base64")
                     }
                 },
-                "JSON形式で出力してください。"
+                jsonInstruction
             ];
         }
 
@@ -67,10 +76,16 @@ export async function analyzeJournalEntry(
         const response = await result.response;
         let responseText = response.text();
 
-        // 稀に Markdown のコードブロック文字が含まれる場合の対策
-        responseText = responseText.replace(/```json/g, '').replace(/```/g, '').trim();
+        console.log('[Gemini Response Raw]:', responseText);
 
-        return JSON.parse(responseText) as AIAnalysisResult;
+        // JSONブロックを抽出する正規表現
+        const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+        if (!jsonMatch) {
+            throw new Error('Failed to extract JSON from Gemini response');
+        }
+
+        const jsonString = jsonMatch[0];
+        return JSON.parse(jsonString) as AIAnalysisResult;
     } catch (error: any) {
         console.error('Gemini Analysis Error:', error);
         throw new Error(`AI Analysis failed: ${error.message}`);
