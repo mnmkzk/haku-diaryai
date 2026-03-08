@@ -104,7 +104,9 @@ export default function RecordPage() {
         });
 
         if (!response.ok) {
-            throw new Error('Failed to process AI analysis');
+            const errData = await response.json().catch(() => ({}));
+            console.error('API Error Response:', errData);
+            throw new Error(errData.details || 'Failed to process AI analysis');
         }
 
         const data = await response.json();
@@ -146,7 +148,9 @@ export default function RecordPage() {
             });
 
             if (!response.ok) {
-                throw new Error('Failed to process text');
+                const errData = await response.json().catch(() => ({}));
+                console.error('API Error Response:', errData);
+                throw new Error(errData.details || 'Failed to process text');
             }
 
             const data = await response.json();
