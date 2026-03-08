@@ -89,7 +89,12 @@ export async function POST(req: Request) {
         });
 
     } catch (error: any) {
-        console.error('API Error:', error);
+        console.error('CRITICAL API ERROR:', {
+            message: error.message,
+            stack: error.stack,
+            cause: error.cause
+        });
+
         return NextResponse.json({
             error: 'Internal Server Error',
             details: error.message,

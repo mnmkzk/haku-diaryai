@@ -26,14 +26,15 @@ export async function analyzeJournalEntry(
     }
 
     // デバッグ用: キーのソースと形式を確認
-    const keySource = process.env.GEMINI_API_KEY ? 'GEMINI_API_KEY' : 'GOOGLE_GENERATIVE_AI_API_KEY';
-    const maskedKey = `${apiKey.substring(0, 4)}...${apiKey.substring(apiKey.length - 4)}`;
+    const keySource = process.env.GEMINI_API_KEY ? 'GEMINI_API_KEY' : (process.env.GOOGLE_GENERATIVE_AI_API_KEY ? 'GOOGLE_GENERATIVE_AI_API_KEY' : 'NONE');
+    const maskedKey = apiKey ? `${apiKey.substring(0, 4)}...${apiKey.substring(apiKey.length - 4)}` : 'missing';
     console.log(`[Gemini Auth] Source: ${keySource}, Key: ${maskedKey}, Model: gemini-1.5-flash`);
 
     try {
         const model = genAI.getGenerativeModel({
             model: "gemini-1.5-flash",
             generationConfig: {
+                // responseSchema を使用すると内部的に v1beta になる
                 responseMimeType: "application/json",
                 responseSchema: RESPONSE_SCHEMA as any,
             }
