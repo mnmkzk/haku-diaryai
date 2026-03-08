@@ -38,7 +38,9 @@ export async function POST(req: Request) {
                 .upload(filePath, audioFile);
 
             if (uploadError) {
-                console.error('Upload error:', uploadError);
+                console.error('CRITICAL STORAGE ERROR: Bucket "audio_temp" might be missing or RLS policy is misconfigured.', uploadError);
+                // バケットエラーを明示的に投げて後続の Gemini 呼び出しの無駄を防ぐ
+                throw new Error(`Storage error: Failed to upload audio to "audio_temp". Please ensure the bucket exists in Supabase. Details: ${uploadError.message}`);
             }
 
             // 3. Transcription & Analysis using Gemini 1.5 Flash

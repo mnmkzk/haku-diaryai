@@ -2,6 +2,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { HAKU_SYSTEM_PROMPT, RESPONSE_SCHEMA } from './ai/prompts';
 
 const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY || '';
+// API バージョンを明示的に指定（v1 を優先）
 const genAI = new GoogleGenerativeAI(apiKey);
 
 export interface AIAnalysisResult {
@@ -28,17 +29,18 @@ export async function analyzeJournalEntry(
     // デバッグ用: キーのソースと形式を確認
     const keySource = process.env.GEMINI_API_KEY ? 'GEMINI_API_KEY' : (process.env.GOOGLE_GENERATIVE_AI_API_KEY ? 'GOOGLE_GENERATIVE_AI_API_KEY' : 'NONE');
     const maskedKey = apiKey ? `${apiKey.substring(0, 4)}...${apiKey.substring(apiKey.length - 4)}` : 'missing';
-    console.log(`[Gemini Auth] Source: ${keySource}, Key: ${maskedKey}, Model: gemini-1.5-flash`);
+    console.log(`[Gemini Auth] Source: ${keySource}, Key: ${maskedKey}, Model: gemini-1.5-flash, API Version: v1 (default)`);
 
     try {
         const model = genAI.getGenerativeModel({
             model: "gemini-1.5-flash",
+            // responseSchema を使用すると SDK は内部的に v1beta を使用する。
+            // 404 が続く場合はここを null にして手動パースに切り替える必要がある。
             generationConfig: {
-                // responseSchema を使用すると内部的に v1beta になる
                 responseMimeType: "application/json",
                 responseSchema: RESPONSE_SCHEMA as any,
             }
-        });
+        }, { apiVersion: 'v1' });
 
         let promptContent: any[];
 
