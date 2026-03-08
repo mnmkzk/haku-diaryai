@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { HAKU_SYSTEM_PROMPT } from './ai/prompts';
+import { HAKU_SYSTEM_PROMPT, RESPONSE_SCHEMA } from './ai/prompts';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
@@ -24,6 +24,7 @@ export async function analyzeJournalEntry(
         model: "gemini-1.5-flash",
         generationConfig: {
             responseMimeType: "application/json",
+            responseSchema: RESPONSE_SCHEMA as any,
         }
     });
 
@@ -49,6 +50,9 @@ export async function analyzeJournalEntry(
     }
 
     const result = await model.generateContent(promptContent);
-    const responseText = result.response.text();
+    let responseText = result.response.text();
+    // 稀に Markdown のコードブロック文字が含まれる場合の対策
+    responseText = responseText.replace(/```json/g, '').replace(/```/g, '').trim();
+
     return JSON.parse(responseText) as AIAnalysisResult;
 }

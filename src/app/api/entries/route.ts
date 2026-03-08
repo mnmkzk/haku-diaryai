@@ -54,9 +54,11 @@ export async function POST(req: Request) {
 
         // 4. Save to Database
         const emotionScores: Record<string, number> = {};
-        aiData.emotions.forEach(emo => {
-            emotionScores[emo.type] = emo.intensity;
-        });
+        if (Array.isArray(aiData.emotions)) {
+            aiData.emotions.forEach(emo => {
+                emotionScores[emo.type] = emo.intensity;
+            });
+        }
 
         const { data: entry, error: dbError } = await (supabase
             .from('journal_entries') as any)
@@ -65,8 +67,8 @@ export async function POST(req: Request) {
                 user_id: userId,
                 raw_transcript: isVoice ? aiData.diary_text : textInput,
                 rewritten_diary: aiData.diary_text,
-                empathy_message: aiData.ai_response,
-                emotion_primary: (aiData.emotions[0]?.type as any) || 'neutral',
+                empathy_message: aiData.ai_response || "ごめんね、うまく言葉にできなかったみたい。",
+                emotion_primary: (Array.isArray(aiData.emotions) && aiData.emotions[0]?.type) || 'neutral',
                 emotion_scores: emotionScores,
                 input_method: isVoice ? 'voice' : 'text',
                 ai_processed_at: new Date().toISOString()

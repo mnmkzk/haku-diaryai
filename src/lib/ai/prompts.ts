@@ -26,21 +26,23 @@ export const HAKU_SYSTEM_PROMPT = `
 joy (喜び), calm (穏やか), sad (悲しみ), anger (怒り), anxiety (不安), gratitude (感謝), surprise (驚き), neutral (中立)
 `;
 
+import { SchemaType } from '@google/generative-ai';
+
 export const RESPONSE_SCHEMA = {
-    type: "object",
+    type: SchemaType.OBJECT,
     properties: {
-        diary_text: { type: "string" },
-        ai_response: { type: "string" },
+        diary_text: { type: SchemaType.STRING },
+        ai_response: { type: SchemaType.STRING },
         emotions: {
-            type: "array",
+            type: SchemaType.ARRAY,
             items: {
-                type: "object",
+                type: SchemaType.OBJECT,
                 properties: {
                     type: {
-                        type: "string",
+                        type: SchemaType.STRING,
                         enum: ["joy", "calm", "sad", "anger", "anxiety", "gratitude", "surprise", "neutral"]
                     },
-                    intensity: { type: "number", description: "0.1 to 1.0" }
+                    intensity: { type: SchemaType.NUMBER, description: "0.1 to 1.0" }
                 },
                 required: ["type", "intensity"]
             }
