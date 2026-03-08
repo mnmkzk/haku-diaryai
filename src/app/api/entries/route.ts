@@ -9,10 +9,11 @@ export const maxDuration = 60;
 export async function POST(req: Request) {
     try {
         const formData = await req.formData();
-        const audioFile = formData.get('audio') as Blob;
+        const audioFile = formData.get('audio') as Blob | null;
+        const textInput = formData.get('text') as string | null;
 
-        if (!audioFile) {
-            return NextResponse.json({ error: 'No audio file provided' }, { status: 400 });
+        if (!audioFile && !textInput) {
+            return NextResponse.json({ error: 'No audio or text provided' }, { status: 400 });
         }
 
         // 1. Get user session
@@ -25,23 +26,33 @@ export async function POST(req: Request) {
 
         const userId = user.id;
         const entryId = uuidv4();
+        const isVoice = !!audioFile;
+        let aiData;
 
-        // 2. Upload to Supabase Storage (audio_temp)
-        const filePath = `${userId}/${entryId}.webm`;
-        const { error: uploadError } = await supabase.storage
-            .from('audio_temp')
-            .upload(filePath, audioFile);
+        if (isVoice && audioFile) {
+            // 音声入力フロー
+            // 2. Upload to Supabase Storage (audio_temp)
+            const filePath = `${userId}/${entryId}.webm`;
+            const { error: uploadError } = await supabase.storage
+                .from('audio_temp')
+                .upload(filePath, audioFile);
 
-        if (uploadError) {
-            console.error('Upload error:', uploadError);
+            if (uploadError) {
+                console.error('Upload error:', uploadError);
+            }
+
+            // 3. Transcription & Analysis using Gemini 1.5 Flash
+            const audioBuffer = Buffer.from(await audioFile.arrayBuffer());
+            aiData = await analyzeJournalEntry(audioBuffer, audioFile.type || "audio/webm");
+
+            // 5. Cleanup Storage
+            supabase.storage.from('audio_temp').remove([filePath]);
+        } else {
+            // テキスト入力フロー（設計書: TextEdit → Processing → JournalDetail）
+            aiData = await analyzeJournalEntry(textInput!, "text/plain");
         }
 
-        // 3. Transcription & Analysis using Gemini 1.5 Flash
-        const audioBuffer = Buffer.from(await audioFile.arrayBuffer());
-        const aiData = await analyzeJournalEntry(audioBuffer, audioFile.type || "audio/webm");
-
         // 4. Save to Database
-        // Convert array to record for database
         const emotionScores: Record<string, number> = {};
         aiData.emotions.forEach(emo => {
             emotionScores[emo.type] = emo.intensity;
@@ -52,12 +63,12 @@ export async function POST(req: Request) {
             .insert({
                 id: entryId,
                 user_id: userId,
-                raw_transcript: aiData.diary_text,
+                raw_transcript: isVoice ? aiData.diary_text : textInput,
                 rewritten_diary: aiData.diary_text,
                 empathy_message: aiData.ai_response,
                 emotion_primary: (aiData.emotions[0]?.type as any) || 'neutral',
                 emotion_scores: emotionScores,
-                input_method: 'voice',
+                input_method: isVoice ? 'voice' : 'text',
                 ai_processed_at: new Date().toISOString()
             })
             .select()
@@ -67,9 +78,6 @@ export async function POST(req: Request) {
             console.error('Database error:', dbError);
             return NextResponse.json({ error: 'Failed to save entry' }, { status: 500 });
         }
-
-        // 5. Cleanup Storage (Optional/Async)
-        supabase.storage.from('audio_temp').remove([filePath]);
 
         return NextResponse.json({
             id: entryId,

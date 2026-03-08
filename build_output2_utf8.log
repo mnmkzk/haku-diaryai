@@ -1,0 +1,925 @@
+﻿
+> haku-app@0.1.0 build
+> next build
+
+  笆ｲ Next.js 14.2.3
+
+   Creating an optimized production build ...
+node.exe : request to h
+ttps://fonts.gstatic.co
+m/s/notosansjp/v56/-F62
+fjtqLzI2JPCgQBnw7HFowwI
+I2lcnk-AFfrgQrvWXpdFg3K
+XxAMsKMbdN.90.woff2 fai
+led, reason: Client net
+work socket disconnecte
+d before secure TLS con
+nection was established
+発生場所 行:1 文字:1
++ & "C:\Program Files\n
+odejs/node.exe" "C:\Pro
+gram Files\nodejs/node_
+mo ...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (request to ht   
+ tp...was establish    
+ed:String) [], Rem    o
+teException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+104.woff2 failed, reaso
+n: Client network socke
+t disconnected before s
+ecure TLS connection wa
+s established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+113.woff2 failed, reaso
+n: Client network socke
+t disconnected before s
+ecure TLS connection wa
+s established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFYzggP-FVth9IU.w
+off2 failed, reason: Cl
+ient network socket dis
+connected before secure
+ TLS connection was est
+ablished
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+93.woff2 failed, reason
+: Client network socket
+ disconnected before se
+cure TLS connection was
+ established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+103.woff2 failed, reaso
+n: Client network socke
+t disconnected before s
+ecure TLS connection wa
+s established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+89.woff2 failed, reason
+: Client network socket
+ disconnected before se
+cure TLS connection was
+ established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+92.woff2 failed, reason
+: Client network socket
+ disconnected before se
+cure TLS connection was
+ established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFYxQgP-FVth9IU.w
+off2 failed, reason: Cl
+ient network socket dis
+connected before secure
+ TLS connection was est
+ablished
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFYzwgP-FVth9IU.w
+off2 failed, reason: Cl
+ient network socket dis
+connected before secure
+ TLS connection was est
+ablished
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+114.woff2 failed, reaso
+n: Client network socke
+t disconnected before s
+ecure TLS connection wa
+s established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+115.woff2 failed, reaso
+n: Client network socke
+t disconnected before s
+ecure TLS connection wa
+s established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+102.woff2 failed, reaso
+n: Client network socke
+t disconnected before s
+ecure TLS connection wa
+s established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+96.woff2 failed, reason
+: Client network socket
+ disconnected before se
+cure TLS connection was
+ established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+119.woff2 failed, reaso
+n: Client network socke
+t disconnected before s
+ecure TLS connection wa
+s established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+110.woff2 failed, reaso
+n: Client network socke
+t disconnected before s
+ecure TLS connection wa
+s established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+111.woff2 failed, reaso
+n: Client network socke
+t disconnected before s
+ecure TLS connection wa
+s established
+
+Retrying 1/3...
+<w> [webpack.cache.Pack
+FileCacheStrategy] Seri
+alizing big strings (13
+3kiB) impacts deseriali
+zation performance (con
+sider using Buffer inst
+ead and decode when nee
+ded)
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+66.woff2 failed, reason
+: Client network socket
+ disconnected before se
+cure TLS connection was
+ established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+71.woff2 failed, reason
+: Client network socket
+ disconnected before se
+cure TLS connection was
+ established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+73.woff2 failed, reason
+: Client network socket
+ disconnected before se
+cure TLS connection was
+ established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+89.woff2 failed, reason
+: Client network socket
+ disconnected before se
+cure TLS connection was
+ established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+75.woff2 failed, reason
+: Client network socket
+ disconnected before se
+cure TLS connection was
+ established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+70.woff2 failed, reason
+: Client network socket
+ disconnected before se
+cure TLS connection was
+ established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+72.woff2 failed, reason
+: Client network socket
+ disconnected before se
+cure TLS connection was
+ established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+90.woff2 failed, reason
+: Client network socket
+ disconnected before se
+cure TLS connection was
+ established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+74.woff2 failed, reason
+: Client network socket
+ disconnected before se
+cure TLS connection was
+ established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+81.woff2 failed, reason
+: Client network socket
+ disconnected before se
+cure TLS connection was
+ established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+88.woff2 failed, reason
+: Client network socket
+ disconnected before se
+cure TLS connection was
+ established
+
+Retrying 1/3...
+request to https://font
+s.gstatic.com/s/notosan
+sjp/v56/-F62fjtqLzI2JPC
+gQBnw7HFowwII2lcnk-AFfr
+gQrvWXpdFg3KXxAMsKMbdN.
+92.woff2 failed, reason
+: Client network socket
+ disconnected before se
+cure TLS connection was
+ established
+
+Retrying 1/3...
+ 笨・Compiled successfully
+   Linting and checking validity of types ...
+
+./src/app/record/page.tsx
+64:8  Warning: React Hook useEffect has a missing dependency: 'handleAutoStop'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/10) ...
+ 笞 Unsupported metadat
+a themeColor is configu
+red in metadata export 
+in /record. Please move
+ it to viewport export 
+instead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+ 笞 Unsupported metadat
+a viewport is configure
+d in metadata export in
+ /record. Please move i
+t to viewport export in
+stead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+ 笞 Unsupported metadat
+a themeColor is configu
+red in metadata export 
+in /record. Please move
+ it to viewport export 
+instead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+ 笞 Unsupported metadat
+a viewport is configure
+d in metadata export in
+ /record. Please move i
+t to viewport export in
+stead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+ 笞 Unsupported metadat
+a themeColor is configu
+red in metadata export 
+in /. Please move it to
+ viewport export instea
+d.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+ 笞 Unsupported metadat
+a viewport is configure
+d in metadata export in
+ /. Please move it to v
+iewport export instead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+ 笞 Unsupported metadat
+a themeColor is configu
+red in metadata export 
+in /. Please move it to
+ viewport export instea
+d.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+ 笞 Unsupported metadat
+a viewport is configure
+d in metadata export in
+ /. Please move it to v
+iewport export instead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+Error: @supabase/ssr: Y
+our project's URL and A
+PI key are required to 
+create a Supabase clien
+t!
+
+Check your Supabase pro
+ject's API settings to 
+find these values
+
+https://supabase.com/da
+shboard/project/_/setti
+ngs/api
+    at rP (C:\Users\mnm
+kz\OneDrive\蜑ｯ讌ｭ\haku-d
+iaryai\haku-app\.next\s
+erver\chunks\861.js:37:
+55868)
+    at 2777 (C:\Users\m
+nmkz\OneDrive\蜑ｯ讌ｭ\haku
+-diaryai\haku-app\.next
+\server\app\page.js:1:7
+699)
+    at t (C:\Users\mnmk
+z\OneDrive\蜑ｯ讌ｭ\haku-di
+aryai\haku-app\.next\se
+rver\webpack-runtime.js
+:1:127)
+    at 7129 (C:\Users\m
+nmkz\OneDrive\蜑ｯ讌ｭ\haku
+-diaryai\haku-app\.next
+\server\app\page.js:1:3
+830)
+    at Object.t [as req
+uire] (C:\Users\mnmkz\O
+neDrive\蜑ｯ讌ｭ\haku-diary
+ai\haku-app\.next\serve
+r\webpack-runtime.js:1:
+127)
+    at require (C:\User
+s\mnmkz\OneDrive\蜑ｯ讌ｭ\h
+aku-diaryai\haku-app\no
+de_modules\next\dist\co
+mpiled\next-server\app-
+page.runtime.prod.js:16
+:18365)
+    at I (C:\Users\mnmk
+z\OneDrive\蜑ｯ讌ｭ\haku-di
+aryai\haku-app\node_mod
+ules\next\dist\compiled
+\next-server\app-page.r
+untime.prod.js:12:94362
+)
+    at C:\Users\mnmkz\O
+neDrive\蜑ｯ讌ｭ\haku-diary
+ai\haku-app\node_module
+s\next\dist\compiled\ne
+xt-server\app-page.runt
+ime.prod.js:12:96668
+    at F._fromJSON (C:\
+Users\mnmkz\OneDrive\蜑ｯ
+讌ｭ\haku-diaryai\haku-ap
+p\node_modules\next\dis
+t\compiled\next-server\
+app-page.runtime.prod.j
+s:12:97106)
+    at JSON.parse (<ano
+nymous>) {
+  digest: '3774044159'
+}
+ 笞 Unsupported metadat
+a themeColor is configu
+red in metadata export 
+in /. Please move it to
+ viewport export instea
+d.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+ 笞 Unsupported metadat
+a viewport is configure
+d in metadata export in
+ /. Please move it to v
+iewport export instead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+
+Error occurred prerende
+ring page "/". Read mor
+e: https://nextjs.org/d
+ocs/messages/prerender-
+error
+
+Error: @supabase/ssr: Y
+our project's URL and A
+PI key are required to 
+create a Supabase clien
+t!
+
+Check your Supabase pro
+ject's API settings to 
+find these values
+
+https://supabase.com/da
+shboard/project/_/setti
+ngs/api
+    at rP (C:\Users\mnm
+kz\OneDrive\蜑ｯ讌ｭ\haku-d
+iaryai\haku-app\.next\s
+erver\chunks\861.js:37:
+55868)
+    at 2777 (C:\Users\m
+nmkz\OneDrive\蜑ｯ讌ｭ\haku
+-diaryai\haku-app\.next
+\server\app\page.js:1:7
+699)
+    at t (C:\Users\mnmk
+z\OneDrive\蜑ｯ讌ｭ\haku-di
+aryai\haku-app\.next\se
+rver\webpack-runtime.js
+:1:127)
+    at 7129 (C:\Users\m
+nmkz\OneDrive\蜑ｯ讌ｭ\haku
+-diaryai\haku-app\.next
+\server\app\page.js:1:3
+830)
+    at Object.t [as req
+uire] (C:\Users\mnmkz\O
+neDrive\蜑ｯ讌ｭ\haku-diary
+ai\haku-app\.next\serve
+r\webpack-runtime.js:1:
+127)
+    at require (C:\User
+s\mnmkz\OneDrive\蜑ｯ讌ｭ\h
+aku-diaryai\haku-app\no
+de_modules\next\dist\co
+mpiled\next-server\app-
+page.runtime.prod.js:16
+:18365)
+    at I (C:\Users\mnmk
+z\OneDrive\蜑ｯ讌ｭ\haku-di
+aryai\haku-app\node_mod
+ules\next\dist\compiled
+\next-server\app-page.r
+untime.prod.js:12:94362
+)
+    at C:\Users\mnmkz\O
+neDrive\蜑ｯ讌ｭ\haku-diary
+ai\haku-app\node_module
+s\next\dist\compiled\ne
+xt-server\app-page.runt
+ime.prod.js:12:96668
+    at F._fromJSON (C:\
+Users\mnmkz\OneDrive\蜑ｯ
+讌ｭ\haku-diaryai\haku-ap
+p\node_modules\next\dis
+t\compiled\next-server\
+app-page.runtime.prod.j
+s:12:97106)
+    at JSON.parse (<ano
+nymous>)
+ 笞 Unsupported metadat
+a themeColor is configu
+red in metadata export 
+in /login. Please move 
+it to viewport export i
+nstead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+ 笞 Unsupported metadat
+a viewport is configure
+d in metadata export in
+ /login. Please move it
+ to viewport export ins
+tead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+ 笞 Unsupported metadat
+a themeColor is configu
+red in metadata export 
+in /login. Please move 
+it to viewport export i
+nstead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+ 笞 Unsupported metadat
+a viewport is configure
+d in metadata export in
+ /login. Please move it
+ to viewport export ins
+tead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+Error: @supabase/ssr: Y
+our project's URL and A
+PI key are required to 
+create a Supabase clien
+t!
+
+Check your Supabase pro
+ject's API settings to 
+find these values
+
+https://supabase.com/da
+shboard/project/_/setti
+ngs/api
+    at rP (C:\Users\mnm
+kz\OneDrive\蜑ｯ讌ｭ\haku-d
+iaryai\haku-app\.next\s
+erver\chunks\861.js:37:
+55868)
+    at 2777 (C:\Users\m
+nmkz\OneDrive\蜑ｯ讌ｭ\haku
+-diaryai\haku-app\.next
+\server\app\login\page.
+js:1:5298)
+    at t (C:\Users\mnmk
+z\OneDrive\蜑ｯ讌ｭ\haku-di
+aryai\haku-app\.next\se
+rver\webpack-runtime.js
+:1:127)
+    at 4146 (C:\Users\m
+nmkz\OneDrive\蜑ｯ讌ｭ\haku
+-diaryai\haku-app\.next
+\server\app\login\page.
+js:1:2950)
+    at Object.t [as req
+uire] (C:\Users\mnmkz\O
+neDrive\蜑ｯ讌ｭ\haku-diary
+ai\haku-app\.next\serve
+r\webpack-runtime.js:1:
+127)
+    at require (C:\User
+s\mnmkz\OneDrive\蜑ｯ讌ｭ\h
+aku-diaryai\haku-app\no
+de_modules\next\dist\co
+mpiled\next-server\app-
+page.runtime.prod.js:16
+:18365)
+    at I (C:\Users\mnmk
+z\OneDrive\蜑ｯ讌ｭ\haku-di
+aryai\haku-app\node_mod
+ules\next\dist\compiled
+\next-server\app-page.r
+untime.prod.js:12:94362
+)
+    at C:\Users\mnmkz\O
+neDrive\蜑ｯ讌ｭ\haku-diary
+ai\haku-app\node_module
+s\next\dist\compiled\ne
+xt-server\app-page.runt
+ime.prod.js:12:96668
+    at F._fromJSON (C:\
+Users\mnmkz\OneDrive\蜑ｯ
+讌ｭ\haku-diaryai\haku-ap
+p\node_modules\next\dis
+t\compiled\next-server\
+app-page.runtime.prod.j
+s:12:97106)
+    at JSON.parse (<ano
+nymous>) {
+  digest: '3275998004'
+}
+ 笞 Unsupported metadat
+a themeColor is configu
+red in metadata export 
+in /login. Please move 
+it to viewport export i
+nstead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+ 笞 Unsupported metadat
+a viewport is configure
+d in metadata export in
+ /login. Please move it
+ to viewport export ins
+tead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+
+Error occurred prerende
+ring page "/login". Rea
+d more: https://nextjs.
+org/docs/messages/prere
+nder-error
+
+Error: @supabase/ssr: Y
+our project's URL and A
+PI key are required to 
+create a Supabase clien
+t!
+
+Check your Supabase pro
+ject's API settings to 
+find these values
+
+https://supabase.com/da
+shboard/project/_/setti
+ngs/api
+    at rP (C:\Users\mnm
+kz\OneDrive\蜑ｯ讌ｭ\haku-d
+iaryai\haku-app\.next\s
+erver\chunks\861.js:37:
+55868)
+    at 2777 (C:\Users\m
+nmkz\OneDrive\蜑ｯ讌ｭ\haku
+-diaryai\haku-app\.next
+\server\app\login\page.
+js:1:5298)
+    at t (C:\Users\mnmk
+z\OneDrive\蜑ｯ讌ｭ\haku-di
+aryai\haku-app\.next\se
+rver\webpack-runtime.js
+:1:127)
+    at 4146 (C:\Users\m
+nmkz\OneDrive\蜑ｯ讌ｭ\haku
+-diaryai\haku-app\.next
+\server\app\login\page.
+js:1:2950)
+    at Object.t [as req
+uire] (C:\Users\mnmkz\O
+neDrive\蜑ｯ讌ｭ\haku-diary
+ai\haku-app\.next\serve
+r\webpack-runtime.js:1:
+127)
+    at require (C:\User
+s\mnmkz\OneDrive\蜑ｯ讌ｭ\h
+aku-diaryai\haku-app\no
+de_modules\next\dist\co
+mpiled\next-server\app-
+page.runtime.prod.js:16
+:18365)
+    at I (C:\Users\mnmk
+z\OneDrive\蜑ｯ讌ｭ\haku-di
+aryai\haku-app\node_mod
+ules\next\dist\compiled
+\next-server\app-page.r
+untime.prod.js:12:94362
+)
+    at C:\Users\mnmkz\O
+neDrive\蜑ｯ讌ｭ\haku-diary
+ai\haku-app\node_module
+s\next\dist\compiled\ne
+xt-server\app-page.runt
+ime.prod.js:12:96668
+    at F._fromJSON (C:\
+Users\mnmkz\OneDrive\蜑ｯ
+讌ｭ\haku-diaryai\haku-ap
+p\node_modules\next\dis
+t\compiled\next-server\
+app-page.runtime.prod.j
+s:12:97106)
+    at JSON.parse (<ano
+nymous>)
+   Generating static pages (2/10) 
+ 笞 Unsupported metadat
+a themeColor is configu
+red in metadata export 
+in /auth/auth-code-erro
+r. Please move it to vi
+ewport export instead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+ 笞 Unsupported metadat
+a viewport is configure
+d in metadata export in
+ /auth/auth-code-error.
+ Please move it to view
+port export instead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+ 笞 Unsupported metadat
+a themeColor is configu
+red in metadata export 
+in /auth/auth-code-erro
+r. Please move it to vi
+ewport export instead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+ 笞 Unsupported metadat
+a viewport is configure
+d in metadata export in
+ /auth/auth-code-error.
+ Please move it to view
+port export instead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+   Generating static pages (4/10) 
+ 笞 Unsupported metadat
+a themeColor is configu
+red in metadata export 
+in /_not-found. Please 
+move it to viewport exp
+ort instead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+ 笞 Unsupported metadat
+a viewport is configure
+d in metadata export in
+ /_not-found. Please mo
+ve it to viewport expor
+t instead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+ 笞 Unsupported metadat
+a themeColor is configu
+red in metadata export 
+in /_not-found. Please 
+move it to viewport exp
+ort instead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+ 笞 Unsupported metadat
+a viewport is configure
+d in metadata export in
+ /_not-found. Please mo
+ve it to viewport expor
+t instead.
+Read more: https://next
+js.org/docs/app/api-ref
+erence/functions/genera
+te-viewport
+   Generating static pages (7/10) 
+ 笨・Generating static pages (10/10)
+
+> Export encountered er
+rors on following paths
+:
+	/login/page: /login
+	/page: /

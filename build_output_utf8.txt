@@ -1,0 +1,88 @@
+﻿
+> haku-app@0.1.0 build
+> next build
+
+  笆ｲ Next.js 14.2.3
+
+node.exe : 
+発生場所 行:1 文字:1
++ & "C:\Program Files\n
+odejs/node.exe" "C:\Pro
+gram Files\nodejs/node_
+mo ...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (:String) [],    
+ RemoteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+> Build error occurred
+Error: EINVAL: invalid 
+argument, readlink 'C:\
+Users\mnmkz\OneDrive\蜑ｯ
+讌ｭ\haku-diaryai\haku-ap
+p\.next\server\edge-run
+time-webpack.js'
+    at async Object.rea
+dlink (node:internal/fs
+/promises:971:10)
+    at async C:\Users\m
+nmkz\OneDrive\蜑ｯ讌ｭ\haku
+-diaryai\haku-app\node_
+modules\next\dist\lib\r
+ecursive-delete.js:58:3
+0
+    at async Promise.al
+l (index 2)
+    at async recursiveD
+elete (C:\Users\mnmkz\O
+neDrive\蜑ｯ讌ｭ\haku-diary
+ai\haku-app\node_module
+s\next\dist\lib\recursi
+ve-delete.js:51:5)
+    at async C:\Users\m
+nmkz\OneDrive\蜑ｯ讌ｭ\haku
+-diaryai\haku-app\node_
+modules\next\dist\lib\r
+ecursive-delete.js:68:1
+7
+    at async Promise.al
+l (index 1)
+    at async recursiveD
+elete (C:\Users\mnmkz\O
+neDrive\蜑ｯ讌ｭ\haku-diary
+ai\haku-app\node_module
+s\next\dist\lib\recursi
+ve-delete.js:51:5)
+    at async C:\Users\m
+nmkz\OneDrive\蜑ｯ讌ｭ\haku
+-diaryai\haku-app\node_
+modules\next\dist\build
+\index.js:692:17
+    at async Span.trace
+AsyncFn (C:\Users\mnmkz
+\OneDrive\蜑ｯ讌ｭ\haku-dia
+ryai\haku-app\node_modu
+les\next\dist\trace\tra
+ce.js:154:20)
+    at async build (C:\
+Users\mnmkz\OneDrive\蜑ｯ
+讌ｭ\haku-diaryai\haku-ap
+p\node_modules\next\dis
+t\build\index.js:366:9)
+ {
+  errno: -4071,
+  code: 'EINVAL',
+  syscall: 'readlink',
+  path: 'C:\\Users\\mnm
+kz\\OneDrive\\蜑ｯ讌ｭ\\hak
+u-diaryai\\haku-app\\.n
+ext\\server\\edge-runti
+me-webpack.js'
+}

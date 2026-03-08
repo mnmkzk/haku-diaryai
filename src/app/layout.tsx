@@ -12,8 +12,15 @@ export const metadata: Metadata = {
   title: "Haku | あなたの全てを受け入れる親友",
   description: "否定せず、ただ寄り添う。AI Chill Buddy と作る、あなただけの心の記録。",
   manifest: "/manifest.json",
+};
+
+export const viewport = {
   themeColor: "#A855F7",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({

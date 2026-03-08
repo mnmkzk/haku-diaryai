@@ -1,26 +1,25 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, Edit } from 'lucide-react';
+import { ChevronLeft, Edit, Send } from 'lucide-react';
 import { WaveformVisualizer } from '@/components/record/WaveformVisualizer';
 import { RecordButton } from '@/components/record/RecordButton';
 import { useAudioRecorder } from '@/hooks/useAudioRecorder';
-import { Typewriter } from '@/components/ui/Typewriter';
+
+const MAX_DURATION = 180; // 3分（設計書仕様）
 
 export default function RecordPage() {
     const router = useRouter();
     const { analyserNode, isRecording, startRecording, stopRecording } = useAudioRecorder();
 
-    const [status, setStatus] = useState<'idle' | 'recording' | 'processing' | 'result'>('idle');
+    const [status, setStatus] = useState<'idle' | 'recording' | 'processing'>('idle');
     const [timer, setTimer] = useState(0);
-    const [errorVisible, setErrorVisible] = useState(false);
-    const [result, setResult] = useState<{
-        diary_text: string;
-        ai_response: string;
-        emotions: { type: string; intensity: number }[];
-    } | null>(null);
+    const [toastMessage, setToastMessage] = useState<string | null>(null);
+    const [textMode, setTextMode] = useState(false);
+    const [textInput, setTextInput] = useState('');
+    const autoStopRef = useRef(false);
 
     // Beforeunload protection
     useEffect(() => {
@@ -38,30 +37,79 @@ export default function RecordPage() {
     useEffect(() => {
         if (isRecording) {
             setStatus('recording');
-            setErrorVisible(false);
-        } else if (status === 'recording') {
-            // Transition from recording to processing
-            setStatus('processing');
+            setToastMessage(null);
         }
     }, [isRecording]);
 
-    // Timer logic
+    // Timer logic + 3分上限
     useEffect(() => {
         let interval: NodeJS.Timeout;
         if (status === 'recording') {
             interval = setInterval(() => {
-                setTimer((prev) => prev + 1);
+                setTimer((prev) => {
+                    const next = prev + 1;
+                    if (next >= MAX_DURATION && !autoStopRef.current) {
+                        autoStopRef.current = true;
+                        // 自動停止
+                        handleAutoStop();
+                    }
+                    return next;
+                });
             }, 1000);
         } else {
             setTimer(0);
+            autoStopRef.current = false;
         }
         return () => clearInterval(interval);
     }, [status]);
+
+    // Toast自動消去（3秒後）
+    useEffect(() => {
+        if (toastMessage) {
+            const timeout = setTimeout(() => setToastMessage(null), 3000);
+            return () => clearTimeout(timeout);
+        }
+    }, [toastMessage]);
 
     const formatTime = (seconds: number) => {
         const mins = Math.floor(seconds / 60);
         const secs = seconds % 60;
         return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    };
+
+    const showError = (message: string) => {
+        setToastMessage(message);
+        setStatus('idle');
+    };
+
+    const handleAutoStop = async () => {
+        try {
+            const audioBlob = await stopRecording();
+            await processAudio(audioBlob);
+        } catch (err) {
+            console.error("Error in auto stop:", err);
+            showError('処理中にエラーが発生しました。もう一度お試しください。');
+        }
+    };
+
+    const processAudio = async (audioBlob: Blob) => {
+        setStatus('processing');
+
+        const formData = new FormData();
+        formData.append('audio', audioBlob, 'record.webm');
+
+        const response = await fetch('/api/entries', {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to process AI analysis');
+        }
+
+        const data = await response.json();
+        // 設計書仕様: Processing → JournalDetail へ遷移
+        router.push(`/journal/${data.id}`);
     };
 
     const handleRecordToggle = async () => {
@@ -70,44 +118,46 @@ export default function RecordPage() {
                 await startRecording();
             } catch (err) {
                 console.error("Failed to start recording", err);
-                setErrorVisible(true);
-                setStatus('idle');
+                showError('マイクが使えないみたい。設定を見てみてくれる？');
             }
         } else if (status === 'recording') {
             try {
                 const audioBlob = await stopRecording();
-                setStatus('processing');
-
-                // Send to backend
-                const formData = new FormData();
-                formData.append('audio', audioBlob, 'record.webm');
-
-                const response = await fetch('/api/entries', {
-                    method: 'POST',
-                    body: formData,
-                });
-
-                if (!response.ok) {
-                    throw new Error('Failed to process AI analysis');
-                }
-
-                const data = await response.json();
-                setResult(data);
-                setStatus('result');
-
+                await processAudio(audioBlob);
             } catch (err) {
                 console.error("Error processing recording:", err);
-                setStatus('idle');
+                showError('処理中にエラーが発生しました。もう一度お試しください。');
             }
         }
     };
 
-    const getEmotionEmoji = (type: string) => {
-        const emojis: Record<string, string> = {
-            joy: '😊', calm: '😌', sad: '😢', anger: '😤', anxiety: '😰', gratitude: '🙏'
-        };
-        return emojis[type] || '🤔';
+    const handleTextSubmit = async () => {
+        if (!textInput.trim()) return;
+
+        try {
+            setStatus('processing');
+
+            const formData = new FormData();
+            formData.append('text', textInput.trim());
+
+            const response = await fetch('/api/entries', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to process text');
+            }
+
+            const data = await response.json();
+            router.push(`/journal/${data.id}`);
+        } catch (err) {
+            console.error("Error processing text:", err);
+            showError('処理中にエラーが発生しました。もう一度お試しください。');
+        }
     };
+
+    const isWarning = status === 'recording' && timer >= MAX_DURATION - 30;
 
     return (
         <div className="min-h-screen bg-[#111111] text-foreground flex flex-col font-sans selection:bg-primary/30 overflow-x-hidden">
@@ -117,10 +167,24 @@ export default function RecordPage() {
                 <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-900/10 blur-[120px] rounded-full" />
             </div>
 
+            {/* Toast Error (設計書仕様: Toast で短くエラー表示し idle に復帰) */}
+            <AnimatePresence>
+                {toastMessage && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -40 }}
+                        className="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass border-destructive/30 px-6 py-3 rounded-2xl flex items-center gap-3 text-destructive shadow-lg"
+                    >
+                        <span className="text-sm font-medium">{toastMessage}</span>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             {/* Header */}
             <header className="relative z-10 px-8 py-6 flex items-center justify-between">
                 <button
-                    onClick={() => status === 'result' ? setStatus('idle') : router.back()}
+                    onClick={() => router.back()}
                     className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors group"
                 >
                     <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
@@ -131,16 +195,6 @@ export default function RecordPage() {
             {/* Main Content */}
             <main className="flex-1 relative z-10 flex flex-col items-center justify-center px-[5%] md:px-[15%] pb-20">
                 <AnimatePresence mode="wait">
-                    {errorVisible && (
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            className="glass border-destructive/30 px-6 py-3 rounded-2xl mb-8 flex items-center gap-3 text-destructive"
-                        >
-                            <span className="text-sm font-medium">あ、マイクが使えないみたい。設定を見てみてくれる？</span>
-                        </motion.div>
-                    )}
-
                     {status === 'processing' ? (
                         <motion.div
                             key="processing"
@@ -158,54 +212,43 @@ export default function RecordPage() {
                                 <p className="text-muted-foreground animate-pulse">あなたの言葉を大切に整理しているよ</p>
                             </div>
                         </motion.div>
-                    ) : status === 'result' && result ? (
+                    ) : textMode ? (
                         <motion.div
-                            key="result"
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            className="w-full max-w-2xl space-y-8"
+                            key="text-input"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="w-full max-w-2xl flex flex-col items-center gap-8"
                         >
-                            {/* AI Response Card */}
-                            <div className="glass-primary rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden group">
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
-                                <div className="flex items-center gap-3 mb-6">
-                                    <div className="w-2 h-2 bg-primary rounded-full animate-pulse shadow-[0_0_10px_rgba(168,85,247,0.8)]" />
-                                    <span className="text-sm font-bold text-primary/80 uppercase tracking-[0.3em]">Haku</span>
-                                </div>
-                                <div className="text-xl md:text-2xl leading-[2] font-medium text-foreground-body italic min-h-[4em]">
-                                    「<Typewriter text={result.ai_response} delay={500} />」
-                                </div>
+                            <div className="text-center space-y-2">
+                                <h2 className="text-xl font-bold tracking-tight">今日はどんな一日だった？</h2>
+                                <p className="text-sm text-muted-foreground">思ったこと、感じたこと、なんでも書いてみて</p>
                             </div>
 
-                            {/* Diary Text Card */}
-                            <div className="space-y-4">
-                                <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-[0.4em] ml-2">リライト日記</h3>
-                                <div className="glass rounded-[2.5rem] p-10 shadow-xl">
-                                    <p className="leading-[1.8] text-foreground-body whitespace-pre-wrap text-lg">
-                                        {result.diary_text}
-                                    </p>
-
-                                    <div className="flex flex-wrap gap-4 mt-12">
-                                        {result.emotions.map((emo, idx) => (
-                                            <div
-                                                key={idx}
-                                                className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-border bg-background/50 text-xs font-medium"
-                                            >
-                                                <span>{getEmotionEmoji(emo.type)}</span>
-                                                <span>{emo.type}</span>
-                                                <span className="opacity-40">{Math.round(emo.intensity * 100)}%</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
+                            <div className="w-full">
+                                <textarea
+                                    value={textInput}
+                                    onChange={(e) => setTextInput(e.target.value)}
+                                    placeholder="今日あったことを書いてみて..."
+                                    className="w-full h-48 bg-card/30 backdrop-blur-md rounded-3xl border border-border/50 shadow-2xl p-6 text-foreground-body placeholder:text-muted-foreground/50 resize-none focus:outline-none focus:border-primary/50 transition-colors"
+                                />
                             </div>
 
-                            <div className="flex justify-center pt-4">
+                            <div className="flex flex-col items-center gap-4">
                                 <button
-                                    onClick={() => setStatus('idle')}
-                                    className="px-8 py-3 bg-secondary hover:bg-secondary/80 rounded-full text-sm font-bold transition-all"
+                                    onClick={handleTextSubmit}
+                                    disabled={!textInput.trim()}
+                                    className="flex items-center gap-2 px-8 py-3 bg-primary hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed rounded-full text-sm font-bold text-primary-foreground transition-all"
                                 >
-                                    もう一度話す
+                                    <Send className="w-4 h-4" />
+                                    <span>送信する</span>
+                                </button>
+
+                                <button
+                                    className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+                                    onClick={() => setTextMode(false)}
+                                >
+                                    <span>音声で入力する</span>
                                 </button>
                             </div>
                         </motion.div>
@@ -218,11 +261,13 @@ export default function RecordPage() {
                             className="w-full max-w-2xl flex flex-col items-center gap-12"
                         >
                             <div className="text-center space-y-4">
-                                <div className="text-6xl font-bold tracking-widest font-mono tabular-nums">
+                                <div className={`text-6xl font-bold tracking-widest font-mono tabular-nums ${isWarning ? 'text-destructive' : ''}`}>
                                     {formatTime(timer)}
                                 </div>
                                 <div className="text-sm text-muted-foreground font-medium uppercase tracking-[0.2em]">
-                                    {status === 'recording' ? 'Recording' : 'Ready to listen'}
+                                    {status === 'recording'
+                                        ? (isWarning ? `残り ${MAX_DURATION - timer}秒` : 'Recording')
+                                        : 'Ready to listen'}
                                 </div>
                             </div>
 
@@ -236,7 +281,7 @@ export default function RecordPage() {
 
                                 <button
                                     className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
-                                    onClick={() => {/* Navigate to text input */ }}
+                                    onClick={() => setTextMode(true)}
                                 >
                                     <Edit className="w-4 h-4" />
                                     <span>テキストで入力する</span>

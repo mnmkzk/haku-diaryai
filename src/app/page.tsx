@@ -70,40 +70,43 @@ export default function HomePage() {
         ) : (
           <div className="space-y-6 pt-4">
             {entries.map((entry, idx) => (
-              <motion.div
-                key={entry.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                className="glass rounded-[2rem] p-6 space-y-4 hover:border-primary/30 transition-colors"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
-                    <Calendar className="w-3 h-3" />
-                    {formatDate(entry.created_at)}
+              <Link key={entry.id} href={`/journal/${entry.id}`}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.1 }}
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="glass rounded-[2rem] p-6 space-y-4 hover:border-primary/30 hover:shadow-lg transition-all cursor-pointer mb-6"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+                      <Calendar className="w-3 h-3" />
+                      {formatDate(entry.created_at)}
+                    </div>
+                    <div className="text-xl">
+                      {getEmotionEmoji(entry.emotion_primary)}
+                    </div>
                   </div>
-                  <div className="text-xl">
-                    {getEmotionEmoji(entry.emotion_primary)}
-                  </div>
-                </div>
 
-                <p className="text-foreground-body line-clamp-3 leading-relaxed">
-                  {entry.rewritten_diary}
-                </p>
+                  <p className="text-foreground-body line-clamp-3 leading-relaxed">
+                    {entry.rewritten_diary}
+                  </p>
 
-                <div className="pt-2 flex items-center gap-2">
-                  <div className="flex -space-x-2">
-                    {entry.emotion_scores?.slice(0, 2).map((emo: any, i: number) => (
-                      <div key={i} className="w-6 h-6 rounded-full glass border-background flex items-center justify-center text-[10px]">
-                        {getEmotionEmoji(emo.type)}
-                      </div>
-                    ))}
+                  <div className="pt-2 flex items-center gap-2">
+                    <div className="flex -space-x-2">
+                      {entry.emotion_scores && Object.entries(entry.emotion_scores).slice(0, 2).map(([type]: any, i: number) => (
+                        <div key={i} className="w-6 h-6 rounded-full glass border-background flex items-center justify-center text-[10px]">
+                          {getEmotionEmoji(type)}
+                        </div>
+                      ))}
+                    </div>
+                    <span className="text-[10px] font-bold text-primary/60 uppercase tracking-tighter ml-1">
+                      {entry.emotion_primary}
+                    </span>
                   </div>
-                  <span className="text-[10px] font-bold text-primary/60 uppercase tracking-tighter ml-1">
-                    {entry.emotion_primary}
-                  </span>
-                </div>
-              </motion.div>
+                </motion.div>
+              </Link>
             ))}
           </div>
         )}
